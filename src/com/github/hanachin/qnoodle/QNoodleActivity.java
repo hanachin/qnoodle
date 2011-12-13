@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Vibrator;
 import android.text.format.Time;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -35,7 +36,15 @@ public class QNoodleActivity extends Activity {
 				if (time.second <= 0) {
 					ToneGenerator tone = new ToneGenerator(AudioManager.STREAM_ALARM, ToneGenerator.MAX_VOLUME);
 					tone.startTone(ToneGenerator.TONE_PROP_NACK);
+					
+					Vibrator vibrator = (Vibrator)getSystemService(VIBRATOR_SERVICE);
+					if (vibrator != null) {
+						long[] pattern = {0, 100, 50, 100, 50, 100};
+						vibrator.vibrate(pattern, -1);
+					}
+					
 					Toast.makeText(getApplicationContext(), R.string.message, Toast.LENGTH_LONG).show();
+					
 					handler.removeCallbacks(this);
 				} else {
 					handler.postDelayed(this, 1000);
