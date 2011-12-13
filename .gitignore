@@ -1,7 +1,6 @@
 *.pydevproject
 .project
 .metadata
-bin/**
 tmp/**
 tmp/**/*
 *.tmp
@@ -35,8 +34,10 @@ local.properties
 *.class
 
 # generated files
-bin/
+bin/**/*
+!bin/QNoodle.apk
 gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
+
