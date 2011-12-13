@@ -33,7 +33,7 @@ public class QNoodleActivity extends Activity {
 			public void run() {
 				time.set((time.minute * 60 + time.second) * 1000 - 1000);
 				updateTime();
-				if (time.second <= 0) {
+				if ((time.minute * 60 + time.second) <= 0) {
 					ToneGenerator tone = new ToneGenerator(AudioManager.STREAM_ALARM, ToneGenerator.MAX_VOLUME);
 					tone.startTone(ToneGenerator.TONE_PROP_NACK);
 					
